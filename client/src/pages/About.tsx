@@ -154,9 +154,11 @@ export default function About() {
         {/* ── Profile Card ──────────────────────────────────────────────── */}
         <Card className="p-6 max-w-md mx-auto mb-16 text-center">
           <div className="flex items-center gap-4 text-left mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-900 to-gray-900 border border-white/10 flex items-center justify-center text-white font-extrabold text-xl shrink-0">
-              MH
-            </div>
+            <img
+              src="/Minhaz.jpg"
+              alt="MD Mehrab Hossain"
+              className="w-16 h-16 rounded-2xl object-cover border border-white/10 shrink-0"
+            />
             <div>
               <div className="font-bold text-lg text-gw-black dark:text-gray-100">MD Mehrab Hossain</div>
               <div className="text-sm text-blue-400 font-semibold">Full-Stack Developer</div>
