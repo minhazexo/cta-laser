@@ -31,7 +31,7 @@ export function MobileTabBar({ cartCount = 0, wishlistCount = 0 }: MobileTabBarP
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed inset-x-0 bottom-0 z-40 lg:hidden bg-white border-t border-gw-border pb-safe"
+      className="fixed inset-x-0 bottom-0 z-40 lg:hidden bg-white dark:bg-gray-900 border-t border-gw-border dark:border-gray-700 pb-safe"
     >
       <div className="flex items-stretch h-16">
         {tabs.map((tab) => {

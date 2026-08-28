@@ -73,14 +73,14 @@ export function Toast({ message, type = "info", isVisible, onClose }: ToastProps
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 bg-white border border-gw-border rounded-xl shadow-gw-md"
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 bg-white dark:bg-gray-900 border border-gw-border dark:border-gray-700 rounded-xl shadow-gw-md"
         >
           {icons[type]}
           <motion.p
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15 }}
-            className="text-sm text-gw-gray-700"
+            className="text-sm text-gw-gray-700 dark:text-gray-200"
           >
             {message}
           </motion.p>
@@ -88,7 +88,7 @@ export function Toast({ message, type = "info", isVisible, onClose }: ToastProps
             onClick={onClose}
             whileHover={{ scale: 1.15, color: "#111827" }}
             whileTap={{ scale: 0.9 }}
-            className="ml-2 text-gw-gray-300 hover:text-gw-gray-700 transition-colors"
+            className="ml-2 text-gw-gray-300 hover:text-gw-gray-700 dark:hover:text-gray-200 transition-colors"
           >
             <X className="w-4 h-4" />
           </motion.button>

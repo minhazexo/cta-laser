@@ -24,8 +24,9 @@ export function Button({
   const variants = {
     primary: "bg-gw-red text-white hover:bg-gw-red-hover hover:-translate-y-0.5",
     dark: "bg-gw-black text-white hover:bg-gw-red hover:-translate-y-0.5",
-    outline: "border-2 border-gw-gray-300 text-gw-gray-700 hover:border-gw-red hover:text-gw-red",
-    ghost: "text-gw-gray-500 hover:text-gw-red",
+    outline:
+      "border-2 border-gw-gray-300 dark:border-gray-600 text-gw-gray-700 dark:text-gray-200 hover:border-gw-red hover:text-gw-red",
+    ghost: "text-gw-gray-500 dark:text-gray-400 hover:text-gw-red",
   };
 
   const sizes = {

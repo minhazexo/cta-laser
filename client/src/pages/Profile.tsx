@@ -8,6 +8,7 @@ import {
 import { Container, Avatar } from "@gadget-wallet/ui";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
+import { useThemeStore } from "../store/useThemeStore";
 import api from "../lib/api";
 import { showToast } from "../store/useToastStore";
 import { OverviewSection } from "./profile/OverviewSection";
@@ -48,15 +49,9 @@ export default function Profile() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [tab, setTab] = useState<TabKey>("overview");
-  // Default to the system theme until the user explicitly chooses; the
-  // index.html init script already applied it before first paint, so this
-  // just keeps React state in sync with what's on <html>.
-  const [dark, setDark] = useState(() => {
-    const stored = localStorage.getItem("gw-dark");
-    if (stored === "1") return true;
-    if (stored === "0") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const theme = useThemeStore((s) => s.theme);
+  const toggleTheme = useThemeStore((s) => s.toggleTheme);
+  const dark = theme === "dark";
   const [stats, setStats] = useState({ orders: 0, wishlist: 0, reviews: 0 });
   const [defaultAddress, setDefaultAddress] = useState<any>(null);
 
@@ -64,12 +59,6 @@ export default function Profile() {
     const t = searchParams.get("tab") as TabKey | null;
     if (t && tabs.some((x) => x.key === t)) setTab(t);
   }, [searchParams]);
-
-  useEffect(() => {
-    if (dark) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-    localStorage.setItem("gw-dark", dark ? "1" : "0");
-  }, [dark]);
 
   useEffect(() => {
     if (!user || isLoading) return;
@@ -163,7 +152,7 @@ export default function Profile() {
               </div>
               <div className="flex gap-2 mt-4">
                 <button
-                  onClick={() => setDark(!dark)}
+                  onClick={toggleTheme}
                   className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border border-gw-border dark:border-gray-700 text-xs font-medium gw-muted hover:text-gw-red transition-colors"
                 >
                   {dark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}

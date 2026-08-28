@@ -9,6 +9,10 @@
      md = 768px
    Colors match the client Tailwind theme: primary #E60023,
    primary-dark #C4001D, gw-shadows (gw-sm / gw-md / gw-lg).
+
+   Dark theme: the `.dark` root class (set by client/src/store/useThemeStore.ts)
+   swaps all light surfaces to the same slate palette used by index.css
+   (bg #0f172a, panel #1e293b, border #334155).
    ========================================================================== */
 
 /* ── Root ──────────────────────────────────────────────────────────────── */
@@ -22,11 +26,19 @@
   top: 0;
   z-index: 50;
   background-color: #ffffff;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.dark .gw-nav-sticky {
+  background-color: #0f172a;
 }
 
 .gw-nav-scrolled {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* shadow-gw-sm */
+}
+
+.dark .gw-nav-scrolled {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Shared centered container (header, nav bar, drawer) ──────────────── */
@@ -39,10 +51,10 @@
 
 /* ── Desktop main row: Logo | Search | Icons ───────────────────────────── */
 .gw-nav-row {
-    display: flex;
-    align-items: center;
-    gap: 11.5rem;
-    padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 11.5rem;
+  padding: 1.5rem 0;
 }
 
 @media (max-width: 1023px) {
@@ -76,12 +88,21 @@
   background-color: #ffffff;
   overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.dark .gw-nav-search {
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
 .gw-nav-search:focus-within {
   border-color: #e60023;
   box-shadow: 0 0 0 2px rgba(230, 0, 35, 0.2);
+}
+
+.dark .gw-nav-search:focus-within {
+  box-shadow: 0 0 0 2px rgba(230, 0, 35, 0.3);
 }
 
 .gw-nav-search-input {
@@ -97,6 +118,10 @@
   outline: none;
 }
 
+.dark .gw-nav-search-input {
+  color: #f3f4f6;
+}
+
 /* iOS Safari auto-zooms into any input with font-size < 16px — mobile only */
 @media (hover: none), (pointer: coarse) {
   .gw-nav-search-input {
@@ -106,6 +131,10 @@
 
 .gw-nav-search-input::placeholder {
   color: #9ca3af;
+}
+
+.dark .gw-nav-search-input::placeholder {
+  color: #94a3b8;
 }
 
 .gw-nav-search-btn {
@@ -128,13 +157,53 @@
   background-color: #c4001d;
 }
 
-/* ── Right-side icon group (Account / Wishlist / Cart) ─────────────────── */
+/* ── Right-side icon group (Theme / Account / Wishlist / Cart) ─────────── */
 .gw-nav-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1.75rem;
   margin-right: 2rem;
+}
+
+/* Theme toggle — compact round button with hover lift */
+.gw-nav-theme-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gw-nav-theme-btn:hover {
+  color: #e60023;
+  border-color: #e60023;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gw-nav-theme-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .gw-nav-theme-btn {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #e5e7eb;
+}
+
+.dark .gw-nav-theme-btn:hover {
+  color: #e60023;
+  border-color: #e60023;
 }
 
 .gw-nav-icon-btn {
@@ -155,6 +224,14 @@
 }
 
 .gw-nav-icon-btn:hover {
+  color: #e60023;
+}
+
+.dark .gw-nav-icon-btn {
+  color: #9ca3af;
+}
+
+.dark .gw-nav-icon-btn:hover {
   color: #e60023;
 }
 
@@ -183,6 +260,10 @@
   height: 1.75rem;
   font-size: 0.8125rem;
   box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.dark .gw-nav-avatar-xs {
+  box-shadow: 0 0 0 1px #334155;
 }
 
 .gw-nav-avatar-sm {
@@ -215,12 +296,21 @@
   z-index: 50;
 }
 
+.dark .gw-nav-menu {
+  background-color: #0f172a;
+  border-color: #1e293b;
+}
+
 .gw-nav-menu-head {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .gw-nav-menu-head {
+  border-bottom-color: #1e293b;
 }
 
 .gw-nav-menu-id {
@@ -237,10 +327,18 @@
   margin: 0;
 }
 
+.dark .gw-nav-menu-name {
+  color: #f3f4f6;
+}
+
 .gw-nav-menu-sub {
   font-size: 0.75rem;
   color: #6b7280;
   margin: 0;
+}
+
+.dark .gw-nav-menu-sub {
+  color: #94a3b8;
 }
 
 .gw-nav-menu-item {
@@ -265,8 +363,21 @@
   color: #e60023;
 }
 
+.dark .gw-nav-menu-item {
+  color: #d1d5db;
+}
+
+.dark .gw-nav-menu-item:hover {
+  background-color: #1e293b;
+  color: #e60023;
+}
+
 .gw-nav-menu-item--logout {
   border-top: 1px solid #e5e7eb;
+}
+
+.dark .gw-nav-menu-item--logout {
+  border-top-color: #1e293b;
 }
 
 /* ── Mobile row: burger | logo | cart ──────────────────────────────────── */
@@ -298,6 +409,14 @@
   color: #e60023;
 }
 
+.dark .gw-nav-burger {
+  color: #9ca3af;
+}
+
+.dark .gw-nav-burger:hover {
+  color: #e60023;
+}
+
 .gw-nav-mlogo {
   display: flex;
   align-items: center;
@@ -319,6 +438,14 @@
 }
 
 .gw-nav-mcart:hover {
+  color: #e60023;
+}
+
+.dark .gw-nav-mcart {
+  color: #9ca3af;
+}
+
+.dark .gw-nav-mcart:hover {
   color: #e60023;
 }
 
@@ -352,10 +479,19 @@
   border: 1px solid #d1d5db;
   background-color: #ffffff;
   overflow: hidden;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.3s ease;
 }
 
 .gw-nav-msearch-form:focus-within {
+  border-color: #e60023;
+}
+
+.dark .gw-nav-msearch-form {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.dark .gw-nav-msearch-form:focus-within {
   border-color: #e60023;
 }
 
@@ -364,6 +500,11 @@
   border-top: 1px solid #e5e7eb;
   background-color: #1c1c1c;
   margin-bottom: 1.25rem;
+}
+
+.dark .gw-nav-bar {
+  border-top-color: #1e293b;
+  background-color: #111827;
 }
 
 @media (max-width: 1023px) {
@@ -423,6 +564,11 @@
   overflow: hidden;
 }
 
+.dark .gw-nav-drawer {
+  background-color: #0f172a;
+  border-top-color: #1e293b;
+}
+
 @media (min-width: 1024px) {
   .gw-nav-drawer {
     display: none;
@@ -474,10 +620,44 @@
   color: #c4001d;
 }
 
+.dark .gw-nav-drawer-link {
+  color: #9ca3af;
+}
+
+.dark .gw-nav-drawer-link:hover {
+  color: #e60023;
+}
+
+.dark .gw-nav-drawer-link--active {
+  color: #e60023;
+}
+
+/* Dark mode — mobile drawer theme toggle */
+.gw-nav-drawer-theme {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.dark .gw-nav-drawer-theme {
+  color: #e5e7eb;
+}
+
+.gw-nav-drawer-theme-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+}
+
 .gw-nav-drawer-section {
   padding-top: 0.75rem;
   margin-top: 0.25rem;
   border-top: 1px solid #e5e7eb;
+}
+
+.dark .gw-nav-drawer-section {
+  border-top-color: #1e293b;
 }
 
 .gw-nav-drawer-user {
@@ -494,16 +674,16 @@
 }
 
 .gw-nav-auth-btn {
-  flex: 1 1 0%;
-  text-align: center;
-  padding: 0.625rem 0;
-  border-radius: 0.375rem;
-  background-color: #e60023;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
+  flex: 1  1  0%;
+  text-align:  center;
+  padding: 0.625rem  0;
+  border-radius:  0.375rem;
+  background-color:  #e60023;
+  color:  #ffffff;
+  font-size:  0.875rem;
+  font-weight:  700;
+  text-decoration:  none;
+  transition:  background-color  0.2s  ease;
 }
 
 .gw-nav-auth-btn:hover {
@@ -519,6 +699,16 @@
 
 .gw-nav-auth-btn--ghost:hover {
   background-color: transparent;
+  border-color: #e60023;
+  color: #e60023;
+}
+
+.dark .gw-nav-auth-btn--ghost {
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+.dark .gw-nav-auth-btn--ghost:hover {
   border-color: #e60023;
   color: #e60023;
 }

@@ -14,6 +14,8 @@ import {
   LogOut,
   Package,
   LayoutDashboard,
+  Sun,
+  Moon,
 } from "lucide-react";
 
 /**
@@ -45,6 +47,8 @@ const navLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
+export type Theme = "light" | "dark";
+
 interface NavbarProps {
   isLoggedIn?: boolean;
   cartCount?: number;
@@ -54,6 +58,10 @@ interface NavbarProps {
   userAvatar?: string | null;
   categories?: HeaderCategory[];
   onLogout?: () => void;
+  /** Current theme — used to render the correct toggle icon. */
+  theme?: Theme;
+  /** Called when the user clicks the theme toggle. */
+  onToggleTheme?: () => void;
 }
 
 // Animated internal link (motion + react-router Link in one component).
@@ -66,6 +74,8 @@ export function Navbar({
   userName = "",
   userAvatar = null,
   onLogout,
+  theme = "light",
+  onToggleTheme,
 }: NavbarProps) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -148,6 +158,29 @@ export function Navbar({
 
             {/* Right utility icons with labels */}
             <div className="gw-nav-actions">
+              {/* Theme toggle */}
+              <motion.button
+                onClick={onToggleTheme}
+                className="gw-nav-theme-btn"
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                whileHover={{ scale: 1.08, y: -1 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={theme}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {theme === "dark" ? <Sun size={22} /> : <Moon size={22} />}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
+
               {isLoggedIn ? (
                 <div
                   className="gw-nav-account"
@@ -393,6 +426,25 @@ export function Navbar({
                     >
                       All Categories
                     </Link>
+                  </motion.div>
+
+                  {/* Theme toggle (mobile only) */}
+                  <motion.div
+                    variants={{ hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } }}
+                    className="gw-nav-drawer-section"
+                  >
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        onToggleTheme?.();
+                      }}
+                      className="gw-nav-drawer-link gw-nav-drawer-theme"
+                    >
+                      <span className="gw-nav-drawer-theme-icon">
+                        {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                      </span>
+                      {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                    </button>
                   </motion.div>
 
                   {/* Account actions (mobile only) */}

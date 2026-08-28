@@ -4,6 +4,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { useAuthStore } from "./store/useAuthStore";
 import { useCartStore } from "./store/useCartStore";
 import { useWishlistStore } from "./store/useWishlistStore";
+import { useThemeStore } from "./store/useThemeStore";
 import { PageTransition } from "./components/PageTransition";
 import { ToastProvider } from "./components/ToastProvider";
 import { MobileTabBar } from "./components/MobileTabBar";
@@ -57,6 +58,8 @@ export default function App() {
   const logout = useAuthStore((s) => s.logout);
   const cartItems = useCartStore((s) => s.items);
   const wishlistItems = useWishlistStore((s) => s.items);
+  const theme = useThemeStore((s) => s.theme);
+  const toggleTheme = useThemeStore((s) => s.toggleTheme);
   const location = useLocation();
   const [categories, setCategories] = useState<HeaderCategory[]>([]);
 
@@ -97,6 +100,8 @@ export default function App() {
         userName={user?.name}
         userAvatar={user?.avatar}
         categories={categories}
+        theme={theme}
+        onToggleTheme={toggleTheme}
         onLogout={() => {
           logout();
           useCartStore.getState().clearCart();

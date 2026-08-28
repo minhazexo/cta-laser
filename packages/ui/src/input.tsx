@@ -35,7 +35,7 @@ export function Input({
           id={id}
           type={inputType}
           className={cn(
-            "w-full h-[46px] px-4 bg-white border border-gw-border rounded-btn text-gw-black placeholder:text-gw-gray-300",
+            "w-full h-[46px] px-4 bg-white dark:bg-gray-900 border border-gw-border dark:border-gray-700 rounded-btn text-gw-black dark:text-white placeholder:text-gw-gray-300 dark:placeholder:text-gray-500",
             "focus:outline-none focus:ring-2 focus:ring-gw-red/20 focus:border-gw-red",
             "transition-all duration-200",
             showPasswordToggle && isPassword && "pr-11",
