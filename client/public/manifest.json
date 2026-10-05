@@ -1,36 +1,21 @@
 {
-  "name": "Gadget Wallet - Premium Electronics",
-  "short_name": "Gadget Wallet",
-  "description": "Premium electronics store. Experience the future of technology.",
+  "name": "CSA Laser — Skin Care & Laser Clinic",
+  "short_name": "CSA Laser",
+  "description": "Skin care, body care, supplements and advanced laser clinic services in Bangladesh.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1a3a4a",
   "icons": [
     {
-      "src": "/icons/appicon128.png",
-      "sizes": "128x128",
-      "type": "image/png"
+      "src": "/icon.jpg",
+      "sizes": "2048x2048",
+      "type": "image/jpeg"
     },
     {
-      "src": "/icons/appicon256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/appicon512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/appicon1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/appicon512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/icon.jpg",
+      "sizes": "2048x2048",
+      "type": "image/jpeg",
       "purpose": "maskable"
     }
   ]

@@ -82,6 +82,9 @@ import notificationsReadAll from "./notifications/read-all.js";
 
 import recentlyViewedIndex from "./recently-viewed/index.js";
 
+import servicesList from "./services/index.js";
+import serviceDetail from "./services/[slug].js";
+
 export const routes = [
   // health
   { pattern: ["health"], handler: health },
@@ -171,4 +174,8 @@ export const routes = [
 
   // recently-viewed
   { pattern: ["recently-viewed"], handler: recentlyViewedIndex },
+
+  // services (CSA Laser clinic)
+  { pattern: ["services"], handler: servicesList },
+  { pattern: ["services", ":slug"], handler: serviceDetail },
 ];

@@ -48,7 +48,7 @@ export default function AdminLayout() {
       {/* Desktop sidebar */}
       <aside className="w-64 border-r border-gw-border min-h-screen p-5 hidden lg:flex lg:flex-col bg-white">
         <div className="flex items-center gap-2 mb-8 px-2">
-          <img src="/logo.png" alt="" className="h-8 w-auto" />
+          <img src="/icon.jpg" alt="CSA Laser" className="h-8 w-auto rounded-lg" />
         </div>
         <nav className="space-y-1">
           {sidebarLinks.map((link) => {
@@ -84,7 +84,7 @@ export default function AdminLayout() {
         <div className="lg:hidden sticky top-0 z-40 bg-white border-b border-gw-border shadow-gw-sm">
           <div className="flex items-center justify-between px-4 h-14">
             <Link to="/admin" className="flex items-center gap-2">
-              <img src="/logo.png" alt="Gadget Wallet Admin" className="h-8 w-auto" />
+              <img src="/icon.jpg" alt="CSA Laser Admin" className="h-8 w-auto rounded-lg" />
               <span className="text-xs font-bold uppercase tracking-wider text-gw-gray-500 hidden sm:inline">
                 Admin
               </span>

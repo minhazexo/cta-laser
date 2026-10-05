@@ -43,6 +43,7 @@ const navLinks = [
   { label: "Home", to: "/" },
   { label: "Shop", to: "/shop" },
   { label: "Categories", to: "/categories" },
+  { label: "Services", to: "/services" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
@@ -132,8 +133,8 @@ export function Navbar({
         <div className="gw-nav-container">
           <div className="gw-nav-row">
             {/* Logo */}
-            <Link to="/" className="gw-nav-logo" aria-label="Gadget Wallet home">
-              <img src="/icons/Nav-footer.png" alt="Gadget Wallet" className="gw-nav-logo-img" />
+            <Link to="/" className="gw-nav-logo" aria-label="CSA Laser home">
+              <img src="/icon.jpg" alt="CSA Laser" className="gw-nav-logo-img" />
             </Link>
 
             {/* Search pill */}
@@ -315,8 +316,8 @@ export function Navbar({
               </AnimatePresence>
             </motion.button>
 
-            <Link to="/" className="gw-nav-mlogo" aria-label="Gadget Wallet home">
-              <img src="/icons/Nav-footer.png" alt="Gadget Wallet" className="gw-nav-mlogo-img" />
+            <Link to="/" className="gw-nav-mlogo" aria-label="CSA Laser home">
+              <img src="/icon.jpg" alt="CSA Laser" className="gw-nav-mlogo-img" />
             </Link>
 
             <Link to="/cart" className="gw-nav-mcart" aria-label="Cart">

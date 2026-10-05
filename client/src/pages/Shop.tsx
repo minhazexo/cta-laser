@@ -251,10 +251,15 @@ export default function Shop() {
 
   const clearAll = () => setFilters(DEFAULT_FILTERS);
 
+  const prettySlug = (s: string) =>
+    s
+      .split("-")
+      .map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+      .join(" ");
   const title = brand
     ? brand.charAt(0).toUpperCase() + brand.slice(1)
     : slug
-      ? slug.charAt(0).toUpperCase() + slug.slice(1)
+      ? prettySlug(slug)
       : "All Products";
 
   // Note: the header (title + Clear all) is rendered by the desktop sidebar

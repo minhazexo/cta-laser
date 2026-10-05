@@ -74,6 +74,8 @@
 .gw-nav-logo-img {
   height: 6rem;
   width: auto;
+  border-radius: 1rem;
+  object-fit: cover;
 }
 
 /* Search pill */
@@ -426,6 +428,8 @@
 .gw-nav-mlogo-img {
   height: 4rem;
   width: auto;
+  border-radius: 0.75rem;
+  object-fit: cover;
 }
 
 .gw-nav-mcart {

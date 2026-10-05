@@ -16,6 +16,10 @@ import {
 } from "../lib/animations";
 import { SectionReveal } from "../components/PageTransition";
 import { ProductCard } from "../components/ProductCard";
+import { SERVICES } from "../data/services";
+
+/** First 6 clinic services previewed on the homepage (full list on /services). */
+const SERVICES_PREVIEW = SERVICES.slice(0, 6);
 
 interface Product {
   id: string;
@@ -72,10 +76,10 @@ function GridSkeleton({ count = 10, cols = "grid-cols-2 sm:grid-cols-3 lg:grid-c
 }
 
 const reviews = [
-  { name: "Alex M.", text: "Absolutely love my new MacBook! The delivery was incredibly fast and the packaging was premium.", rating: 5 },
-  { name: "Sarah K.", text: "Best electronics store I've ever shopped at. The customer service is outstanding.", rating: 5 },
-  { name: "James R.", text: "Got my Sony headphones at an amazing price. Will definitely be a returning customer.", rating: 5 },
-  { name: "Emma L.", text: "The iPhone arrived in 2 days. Authentic product with official warranty. Highly recommended!", rating: 5 },
+  { name: "Nusrat J.", text: "কার্বন ফেসিয়ালের পর স্কিন একদম গ্লো করছে! সার্ভিস খুবই প্রফেশনাল।", rating: 5 },
+  { name: "Tanvir H.", text: "Original sunscreen at the best price, delivery inside Dhaka in 1 day. Highly recommended!", rating: 5 },
+  { name: "Shamima A.", text: "মেসতা অনেকটাই হালকা হয়েছে মাত্র ৩ সেশনে। আপুরা খুব যত্ন নিয়ে কাজ করেন।", rating: 5 },
+  { name: "Rakib M.", text: "Vitamin C serum 100% authentic. Cash on delivery, great packaging. Will order again!", rating: 5 },
 ];
 
 export default function Home() {
@@ -148,13 +152,13 @@ export default function Home() {
             <div className="relative z-20 flex items-center justify-center md:justify-start min-h-[320px] md:min-h-[420px] lg:min-h-[520px] px-6 md:px-16">
               <motion.div variants={heroItem} className="max-w-[520px] text-center md:text-left">
                 <p className="text-gw-red font-semibold text-xs md:text-sm mb-2 md:mb-3 tracking-wider uppercase">
-                  Premium Electronics Store
+                  Skin Care · Laser Clinic
                 </p>
                 <h1 className="text-3xl sm:text-4xl md:text-[56px] font-extrabold text-white leading-tight mb-3 md:mb-4">
-                  Experience the Future of Technology
+                  Glow Skin, Laser Care — All in One Place
                 </h1>
                 <p className="text-white/70 text-sm md:text-lg mb-6 md:mb-8 max-w-[420px] mx-auto md:mx-0">
-                  Premium gadgets delivered to your doorstep with official warranty.
+                  100% authentic skin care with fast delivery — plus advanced laser clinic services.
                 </p>
                 <motion.div variants={heroItem} className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <Link to="/shop">
@@ -191,10 +195,10 @@ export default function Home() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
           >
             {[
-              { icon: Truck, title: "Fast Delivery", desc: "2-5 business days" },
-              { icon: Shield, title: "Official Warranty", desc: "100% authentic products" },
+              { icon: Truck, title: "Fast Delivery", desc: "Inside Dhaka 24-48h" },
+              { icon: Shield, title: "100% Authentic", desc: "Original products only" },
               { icon: Wallet, title: "Cash on Delivery", desc: "Pay when you receive" },
-              { icon: Lock, title: "Secure Payment", desc: "256-bit SSL encrypted" },
+              { icon: Lock, title: "Laser Clinic", desc: "9 expert beauty services" },
             ].map((item) => (
               <motion.div
                 key={item.title}
@@ -227,9 +231,9 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
           >
-            {categories.slice(0, 6).map((cat) => (
+            {categories.slice(0, 4).map((cat) => (
               <motion.div
                 key={cat.slug}
                 variants={staggerItem}
@@ -248,6 +252,40 @@ export default function Home() {
                     className="w-12 h-12 md:w-16 md:h-16 object-contain mx-auto mb-2 md:mb-3"
                   />
                   <p className="text-xs md:text-sm font-semibold text-gw-black group-hover:text-gw-red transition-colors">{cat.name}</p>
+                </MotionLink>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </SectionReveal>
+
+      {/* ── Our Services (CSA Laser clinic) ── */}
+      <SectionReveal className="gw-below-fold">
+        <Container>
+          <div className="gw-section-header">
+            <h2 className="gw-section-title">Our Services</h2>
+            <Link to="/services" className="gw-section-link">View All &rarr;</Link>
+          </div>
+          <motion.div
+            variants={staggerContainerFast}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
+          >
+            {SERVICES_PREVIEW.map((service) => (
+              <motion.div key={service.slug} variants={staggerItem}>
+                <MotionLink
+                  to="/services"
+                  whileHover={{ y: -5, boxShadow: "0 12px 24px rgba(0,0,0,0.08)" }}
+                  whileTap={{ scale: 0.96 }}
+                  className="block bg-white border border-gw-border rounded-category p-4 md:p-5 transition-shadow duration-300 group h-full"
+                >
+                  <p className="text-sm md:text-base font-bold text-gw-black group-hover:text-gw-red transition-colors leading-snug">
+                    📍 {service.nameBn}
+                  </p>
+                  <p className="text-[11px] md:text-xs font-semibold text-gw-red mt-0.5">{service.nameEn}</p>
+                  <p className="text-xs text-gw-gray-500 mt-1.5 line-clamp-2">{service.description}</p>
                 </MotionLink>
               </motion.div>
             ))}
@@ -488,7 +526,7 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-white/60 text-sm md:text-base mb-6 md:mb-8 max-w-md mx-auto"
             >
-              Subscribe to get notified about new arrivals, exclusive deals, and tech news.
+              Subscribe to get notified about new arrivals, exclusive offers, and skin-care tips.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

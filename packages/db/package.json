@@ -10,6 +10,7 @@
     "generate": "drizzle-kit generate",
     "push": "drizzle-kit push",
     "seed": "bun run src/seed.ts",
+    "seed:csa": "bun run src/migrate-csa.ts",
     "migrate": "drizzle-kit migrate",
     "typecheck": "tsc --noEmit"
   },

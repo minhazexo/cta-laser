@@ -361,6 +361,21 @@ export const banners = pgTable("banners", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// CSA Laser clinic services (laser treatments + facials).
+// Booked in-store via the Contact page — no cart/checkout linkage.
+export const services = pgTable("services", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  nameBn: text("name_bn").notNull(),
+  nameEn: text("name_en").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  icon: text("icon"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const settings = pgTable("settings", {
   id: uuid("id").defaultRandom().primaryKey(),
   key: text("key").notNull().unique(),

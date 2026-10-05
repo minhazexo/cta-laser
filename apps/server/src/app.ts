@@ -19,6 +19,7 @@ import { addressRoutes } from "./routes/addresses.js";
 import { paymentMethodRoutes } from "./routes/paymentMethods.js";
 import { notificationRoutes } from "./routes/notifications.js";
 import { recentlyViewedRoutes } from "./routes/recentlyViewed.js";
+import { serviceRoutes } from "./routes/services.js";
 import { UPLOADS_DIR } from "./utils/storage.js";
 
 /**
@@ -86,6 +87,7 @@ app.route("/api/address", addressRoutes);
 app.route("/api/payment-methods", paymentMethodRoutes);
 app.route("/api/notifications", notificationRoutes);
 app.route("/api/recently-viewed", recentlyViewedRoutes);
+app.route("/api/services", serviceRoutes);
 
 // Consistent JSON errors for the API instead of Hono's plain-text fallback.
 app.notFound((c) => c.json({ success: false, error: "Not Found" }, 404));

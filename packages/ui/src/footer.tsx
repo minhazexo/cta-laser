@@ -10,6 +10,7 @@ const footerLinks = {
       { label: "Home", to: "/" },
       { label: "Shop", to: "/shop" },
       { label: "Categories", to: "/categories" },
+      { label: "Services", to: "/services" },
       { label: "About Us", to: "/about" },
       { label: "Contact", to: "/contact" },
     ],
@@ -68,10 +69,10 @@ export function Footer() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <img src="/icons/Nav-footer.png" alt="Gadget Wallet" className="h-24 w-auto" />
+              <img src="/icon.jpg" alt="CSA Laser" className="h-24 w-auto rounded-2xl" />
             </MotionLink>
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
-              Your trusted destination for premium electronics. We bring you the latest gadgets at the best prices with official warranty.
+              Your trusted destination for skin care, body care, supplements and advanced laser clinic services — 100% authentic products with fast delivery across Bangladesh.
             </p>
             <motion.div
               variants={staggerColumn}
@@ -159,8 +160,8 @@ export function Footer() {
           transition={{ delay: 0.5 }}
           className="border-t border-white/10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-500"
         >
-          <p>&copy; 2024 Gadget Wallet. All rights reserved.</p>
-          <p>Premium Electronics Store</p>
+          <p>&copy; {new Date().getFullYear()} CSA Laser. All rights reserved.</p>
+          <p>Skin Care · Laser Clinic</p>
         </motion.div>
       </Container>
     </footer>

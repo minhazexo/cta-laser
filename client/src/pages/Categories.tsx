@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 // Animated internal link (motion + react-router Link in one component).
 const MotionLink = motion.create(Link);
-import { Smartphone, Laptop, Watch, Headphones, Gamepad2, Camera, Tablet, Cable, Package } from "lucide-react";
+import { Sparkles, HeartHandshake, Pill, Stethoscope, Package } from "lucide-react";
 import {
   staggerContainerFast,
   staggerItem,
@@ -13,14 +13,10 @@ import {
 import { cachedGet } from "../lib/cachedGet";
 
 const iconMap: Record<string, any> = {
-  smartphones: Smartphone,
-  laptops: Laptop,
-  smartwatches: Watch,
-  headphones: Headphones,
-  gaming: Gamepad2,
-  cameras: Camera,
-  tablets: Tablet,
-  accessories: Cable,
+  "skin-care": Sparkles,
+  "body-care": HeartHandshake,
+  supplement: Pill,
+  medicine: Stethoscope,
 };
 
 interface Category {
@@ -61,7 +57,7 @@ export default function Categories() {
           transition={{ delay: 0.15 }}
           className="gw-muted mb-8 -mt-5"
         >
-          Browse our wide selection of electronics
+          Browse our skin care, body care, supplements & medicines
         </motion.p>
 
         <motion.div

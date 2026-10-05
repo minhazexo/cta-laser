@@ -1,0 +1,6 @@
+# Bun 1.2+ defaults to an "isolated" install layout that drops some
+# transitive dependencies (e.g. `safe-buffer` needed by jsonwebtoken/jws,
+# `util-deprecate` needed by tailwindcss/postcss-selector-parser).
+# Hoisted layout restores the classic node_modules behavior this repo needs.
+[install]
+linker = "hoisted"

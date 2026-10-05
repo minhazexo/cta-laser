@@ -59,6 +59,8 @@ backups/
 
 .vercel
 .env*
+# ...except the committed templates (no secrets in either).
+!client/.env.example
 
 # Local AI/agent skill tooling (npx skills add) - dev-only.
 .agents/
@@ -66,5 +68,9 @@ backups/
 supabase/
 skills-lock.json
 
-# Project docs — kept local, not versioned.
-docs/
+# Project docs — kept local, not versioned (contents ignored, not the dir
+# itself, so the exception below can take effect).
+docs/*
+# ...except the Spring Boot API contract: the Java backend is implemented
+# from it, so it must travel with the repo.
+!docs/SPRING_BOOT_API_CONTRACT.md

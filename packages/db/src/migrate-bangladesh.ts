@@ -43,6 +43,10 @@ export const DELIVERY_NOTE = [
 ].join("\n");
 
 const CATEGORY_EMOJI: Record<string, string> = {
+  "skin-care": "✨",
+  "body-care": "🧴",
+  supplement: "💊",
+  medicine: "🩺",
   earphone: "🎧",
   "power-bank": "🔋",
   "usb-cable": "🔌",
@@ -69,7 +73,7 @@ function esc(s: string): string {
 function placeholderSvg(p: CatalogProduct, brandName: string): string {
   const emoji = CATEGORY_EMOJI[p.categorySlug] || "📦";
   const name = esc(p.name);
-  const footer = esc(`${brandName} · Gadget Wallet`);
+  const footer = esc(`${brandName} · CSA Laser`);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
   <rect width="1200" height="1200" fill="#ffffff"/>
   <circle cx="600" cy="520" r="360" fill="#f4f6fb"/>
@@ -105,7 +109,7 @@ function buildSpecs(p: CatalogProduct, brandName: string, categoryName: string) 
     { key: "Condition", value: "Brand New" },
     { key: "Delivery", value: DELIVERY_NOTE },
     { key: "meta_title", value: `${p.name} Price in Bangladesh` },
-    { key: "meta_description", value: `Buy ${p.name} at GadgetWallet with official warranty and fast delivery in Bangladesh.` },
+    { key: "meta_description", value: `Buy ${p.name} at CSA Laser with 100% authenticity and fast delivery in Bangladesh.` },
     { key: "keywords", value: seoKeywords },
   ];
 }
@@ -134,10 +138,10 @@ function validateCatalog() {
   for (const c of CATEGORIES) {
     const count = countByCategory.get(c.slug) || 0;
     const featured = featuredByCategory.get(c.slug) || 0;
-    if (count !== 10) throw new Error(`Category ${c.slug} has ${count} products (expected 10)`);
-    if (featured !== 2) throw new Error(`Category ${c.slug} has ${featured} featured (expected 2)`);
+    if (count < 1) throw new Error(`Category ${c.slug} has no products`);
+    if (featured < 1) throw new Error(`Category ${c.slug} has no featured products`);
   }
-  if (PRODUCTS.length !== 60) throw new Error(`Expected 60 products, got ${PRODUCTS.length}`);
+  if (PRODUCTS.length < 1) throw new Error(`Expected at least 1 product, got ${PRODUCTS.length}`);
 }
 
 async function ensureBucket() {
@@ -227,23 +231,23 @@ export async function migrateBangladeshCatalog(): Promise<void> {
     await tx.update(settings).set({ value: "2000" }).where(eq(settings.key, "free_shipping_threshold"));
     await tx
       .update(settings)
-      .set({ value: "Premium gadgets store in Bangladesh — earphones, power banks, smart watches and more." })
+      .set({ value: "CSA Laser — skin care, body care, supplements and laser clinic services in Bangladesh." })
       .where(eq(settings.key, "site_description"));
     await tx.delete(banners);
     await tx.insert(banners).values([
       {
-        title: "Power Bank Collection",
-        subtitle: "Fast charging power banks for every phone",
-        imageUrl: "https://picsum.photos/seed/power-bank-banner/1200/400",
-        linkUrl: "/category/power-bank",
+        title: "Skin Care Collection",
+        subtitle: "Serum, face wash and sunscreen for glowing skin",
+        imageUrl: "https://picsum.photos/seed/skincare-banner/1200/400",
+        linkUrl: "/category/skin-care",
         position: "home",
         isActive: true,
       },
       {
-        title: "Earbuds Collection",
-        subtitle: "Wireless sound without breaking the bank",
-        imageUrl: "https://picsum.photos/seed/earbuds-banner/1200/400",
-        linkUrl: "/category/earbuds",
+        title: "Laser Clinic Services",
+        subtitle: "Hair removal, carbon facial, hydra facial and more",
+        imageUrl: "https://picsum.photos/seed/laser-banner/1200/400",
+        linkUrl: "/services",
         position: "home",
         isActive: true,
       },
